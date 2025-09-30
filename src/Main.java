@@ -28,8 +28,41 @@ public class Main {
 
         //-----PATRON COMMAND-----
 
-        //-----PATRON ITERATOR-----
+        //-----PATRON ITERATOR and PATRON STRATEGY-----
 
+               // creacion de alumno e incorporamos notas obtenidas
+        Alumno alumno = new Alumno("Juan ","Lopez",123464,3469);
+        alumno.mostrarDatos(); 
+        alumno.agregarNota(80);
+        alumno.agregarNota(90);
+        alumno.agregarNota(70);
+        
+            // inscribimos al alumno a cursos 
+        alumno.inscribirCurso(new Curso("Desarrollo"));
+        alumno.inscribirCurso(new Curso("Paradigmas"));
+        alumno.inscribirCurso(new Curso("Bases de Datos"));
+        
+           // Recorrido de cursos con Iterator
+        System.out.println("\nCursos inscritos:");
+        CursoIterator iterator = alumno.iterator();
+            while (iterator.hasNext()) {
+                System.out.println("- " + iterator.next().getNombre());
+            }
+
+            // Aplicamos estrategias de calculo de notas -> Promedio simple
+        alumno.setEstrategiaCalculoNot(new PromedioSimple());
+        System.out.println("Promedio simple: " + alumno.calcularNotaFinal());
+            //Aplicamos estrategias de calculo de notas ->  Promedio ponderado
+        alumno.setEstrategiaCalculoNot(new PromedioPonderado(Arrays.asList(0.3, 0.4, 0.3)));
+        System.out.println("Promedio ponderado: " + alumno.calcularNotaFinal());
+        
+            // Aplicamos estrategias de calculo de notas -> Promedio con examen extra
+        alumno.setEstrategiaCalculoNot(new ExamenExtra(85));
+        System.out.println("Promedio con examen extra: " + alumno.calcularNotaFinal());
+
+         
+       
+        
         //-----PATRON MEDIATOR-----
         System.out.println("\n--> PROBAMOS PATRON MEDIATOR:");
         ChatMediator sala = new ChatRoom();
@@ -44,7 +77,7 @@ public class Main {
         profesorMediator.enviar("Buen dia chicos.");
         alumnoMediator1.enviar("¡Hola a todos!");
         alumnoMediator2.enviar("Hola Profe y Pepe, ¿cómo han estado?");
-        alumnoMediator1.enviar("Bien, ¿y tu Rosa?");
+        alumnoMediator1.enviar("Bien, ¿y tu Rosalia?");
         alumnoMediator2.enviar("Muy bien, gracias.");
 
         //-----PATRON MEMENTO-----
@@ -53,7 +86,6 @@ public class Main {
 
         //-----PATRON STATE-----
 
-        //-----PATRON STRATEGY-----
 
         //-----PATRON TEMPLATE METHOD-----
 
