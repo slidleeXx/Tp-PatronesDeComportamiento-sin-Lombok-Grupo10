@@ -1,5 +1,8 @@
 import Chain_of_Responsibility.*;
 import Mediator.*;
+import entidades.*; 
+import iterador.*; 
+import strategy.*; 
 
 
 
